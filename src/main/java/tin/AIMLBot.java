@@ -16,7 +16,8 @@ public class AIMLBot implements ReplyBot {
 	}
 
 	public AIMLBot() {
-		aliceBot = new AliceBot();
+		ChatterBean chatterBean = new ChatterBean(null);
+		aliceBot = chatterBean.getAliceBot();
 	}
 
 	public String getReply(String user, String message) {
