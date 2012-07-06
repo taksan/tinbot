@@ -10,6 +10,7 @@ public class TinMain {
 		}
 		Skype.setDaemon(false);
 		
-		Skype.addChatMessageListener(new TinBot());
+//		Skype.addChatMessageListener(new TinBot());
+		Skype.addChatMessageListener(new AIMLBot());
 	}
 }

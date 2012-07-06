@@ -168,6 +168,11 @@ public class Context
       if (file.isDirectory())
         path = file.getPath() + "/gossip-" + id() + ".txt";
   
+      if(!new File(path).exists()){
+    	  File createTempFile = File.createTempFile("FOOOOOOOOO", "BBBBAR");
+    	  path = createTempFile.getAbsolutePath();
+      }
+      
       outputStream(new FileOutputStream(path));
     }
     
