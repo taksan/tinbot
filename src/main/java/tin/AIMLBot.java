@@ -3,12 +3,7 @@ package tin;
 import bitoflife.chatterbean.AliceBot;
 import bitoflife.chatterbean.ChatterBean;
 
-import com.skype.ChatMessage;
-import com.skype.ChatMessageListener;
-import com.skype.SkypeException;
-import com.skype.User;
-
-public class AIMLBot implements ChatMessageListener {
+public class AIMLBot implements ReplyBot {
 
 	private AliceBot aliceBot;
 	
@@ -24,27 +19,7 @@ public class AIMLBot implements ChatMessageListener {
 		aliceBot = new AliceBot();
 	}
 
-	public void chatMessageReceived(ChatMessage receivedChatMessage)
-			throws SkypeException {
-		String reply = getReply(getUser(receivedChatMessage.getSender()), receivedChatMessage.getContent());
-		if (reply != null)
-			receivedChatMessage.getSender().send(reply);
-	}
-
-	private String getReply(String user, String message) {
+	public String getReply(String user, String message) {
 		return aliceBot.respond(message);
 	}
-
-	private String getUser(User sender) throws SkypeException {
-		String fullName = sender.getFullName();
-		if (fullName == null)
-			return sender.getId();
-		return fullName;
-	}
-
-	public void chatMessageSent(ChatMessage sentChatMessage)
-			throws SkypeException {
-		// does nothing
-	}
-
 }
