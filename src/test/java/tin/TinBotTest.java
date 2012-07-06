@@ -80,7 +80,7 @@ public class TinBotTest {
 		replyByPattern.put("hello (.*)", "bye $SENDER");
 		
 		String reply = subject.getReplyForMessage(replyByPattern, new Sender("John Doe"), "hello darling");
-		assertEquals("bye John Doe", reply);
+		assertEquals("bye John", reply);
 	}
 	
 	@Test

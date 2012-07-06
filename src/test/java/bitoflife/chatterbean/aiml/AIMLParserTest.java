@@ -14,7 +14,6 @@ You should have received a copy of the GNU General Public License along with Cha
 
 package bitoflife.chatterbean.aiml;
 
-import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -71,7 +70,7 @@ public class AIMLParserTest extends TestCase
   {
     AIMLParser parser = new AIMLParser();
     GraphmasterMock mock = new GraphmasterMock();
-    parser.parse(mock, new FileInputStream("Bots/Alice/thattopic.aiml"));
+    parser.parse(mock, getClass().getResourceAsStream("/Bots/Alice/thattopic.aiml"));
     
     assertEquals(4, mock.categories.size());
     
@@ -89,7 +88,7 @@ public class AIMLParserTest extends TestCase
   {
     AIMLParser parser = new AIMLParser();
     GraphmasterMock mock = new GraphmasterMock();
-    parser.parse(mock, new FileInputStream("Bots/Alice/Again.aiml"));
+    parser.parse(mock, getClass().getResourceAsStream("/Bots/Alice/Again.aiml"));
 
     Category category = null;
     Map<Pattern, Category> categories = new HashMap<Pattern, Category>();

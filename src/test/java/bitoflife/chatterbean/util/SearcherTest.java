@@ -14,7 +14,6 @@ You should have received a copy of the GNU General Public License along with Cha
 
 package bitoflife.chatterbean.util;
 
-import java.net.URL;
 import junit.framework.TestCase;
 
 public class SearcherTest extends TestCase
@@ -54,7 +53,7 @@ public class SearcherTest extends TestCase
   
   public void testDirURL() throws Exception
   {
-    String[] paths = searcher.dir(new URL("file", "localhost", "./"), "Bots/Alice", ".+\\.aiml");
+    String[] paths = searcher.dir(getClass().getResource("/"), "Bots/Alice", ".+\\.aiml");
     
     assertEquals("Bots/Alice/Again.aiml", paths[0]);
     assertEquals("Bots/Alice/Alice.aiml", paths[1]);

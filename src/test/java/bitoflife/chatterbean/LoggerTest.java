@@ -1,5 +1,5 @@
 /*
-Copyleft (C) 2005 Hélio Perroni Filho
+Copyleft (C) 2005 Hï¿½lio Perroni Filho
 xperroni@yahoo.com
 ICQ: 2490863
 
@@ -16,9 +16,10 @@ package bitoflife.chatterbean;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+
 import junit.framework.TestCase;
 import bitoflife.chatterbean.util.Sequence;
 
@@ -51,7 +52,6 @@ public class LoggerTest extends TestCase
   /*
   Methods
   */
-
   public void testAddEntry() throws IOException
   {
     logger.append("First request", "First response");
@@ -59,14 +59,18 @@ public class LoggerTest extends TestCase
     logger.append("Third request", "Third response");
     
     BufferedReader reader = new BufferedReader(new FileReader(file));
-    
-    assertTrue(reader.readLine().matches("\\[[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}\\]" +
-                                         "\\[First request\\]\\[First response\\]"));
-
-    assertTrue(reader.readLine().matches("\\[[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}\\]" +
-                                         "\\[Second request\\]\\[Second response\\]"));
-
-    assertTrue(reader.readLine().matches("\\[[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}\\]" +
-                                         "\\[Third request\\]\\[Third response\\]"));
+    try {
+	    
+	    assertTrue(reader.readLine().matches("\\[[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}\\]" +
+	                                         "\\[First request\\]\\[First response\\]"));
+	
+	    assertTrue(reader.readLine().matches("\\[[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}\\]" +
+	                                         "\\[Second request\\]\\[Second response\\]"));
+	
+	    assertTrue(reader.readLine().matches("\\[[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}\\]" +
+	                                         "\\[Third request\\]\\[Third response\\]"));
+    }finally {
+    	reader.close();
+    }
   }
 }

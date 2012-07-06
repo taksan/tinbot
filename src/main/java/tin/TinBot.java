@@ -9,23 +9,12 @@ import java.util.Map.Entry;
 
 import org.apache.commons.io.FileUtils;
 
-import com.skype.ChatMessage;
-import com.skype.ChatMessageListener;
-import com.skype.SkypeException;
-import com.skype.User;
-
-public class TinBot implements ChatMessageListener {
+public class TinBot implements ReplyBot {
 	
 	private static final String TINCONFIG = ".tinconfig";
 
-	public void chatMessageReceived(ChatMessage receivedChatMessage)
-			throws SkypeException {
-		String reply = getReply(getUser(receivedChatMessage.getSender()), receivedChatMessage.getContent());
-		if (reply != null)
-			receivedChatMessage.getSender().send(reply);
-	}
-
-	private String getReply(String user, String message) {
+	@Override
+	public String getReply(String user, String message) {
 		Map<String, String> replyByPattern = getReplyByPattern();
 		return getReplyForMessage(replyByPattern, new Sender(user), message);
 	}
@@ -39,14 +28,6 @@ public class TinBot implements ChatMessageListener {
 			}
 		}
 		return null;
-	}
-
-
-	private String getUser(User sender) throws SkypeException {
-		String fullName = sender.getFullName();
-		if (fullName == null)
-			return sender.getId();
-		return fullName;
 	}
 	
 	private Map<String, String> getReplyByPattern() {
@@ -90,10 +71,4 @@ public class TinBot implements ChatMessageListener {
 		File homeDir = new File(home);
 		return homeDir;
 	}
-
-	public void chatMessageSent(ChatMessage sentChatMessage)
-			throws SkypeException {
-		// does nothing
-	}
-
 }

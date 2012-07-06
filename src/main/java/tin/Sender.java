@@ -9,7 +9,7 @@ public class Sender  {
 	}
 
 	public String get() {
-		return sender;
+		return sender.replaceAll("([^ ]*) .*", "$1");
 	}
 
 }
